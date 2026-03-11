@@ -17,3 +17,5 @@ public class MedicoController {
         System.out.println(dados);
     }
 }
+
+//teste
