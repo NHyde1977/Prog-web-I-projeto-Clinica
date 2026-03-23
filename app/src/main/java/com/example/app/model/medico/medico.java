@@ -1,17 +1,9 @@
 package com.example.app.model.medico;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.example.app.model.endereco.Endereco;
+
+import jakarta.persistence.*;
+import lombok.*;
 
 //classe modelo responsável por criar uma tabela e suas colunas no BD.
 
@@ -23,10 +15,11 @@ import lombok.Setter;
 @Entity // informa que a classe abaixo é uma entidade ou seja, uma tabela no BD.
 @Table(name = "medicos")
 
-public class medico {
+public class Medico {
 
     @Id //informa para o BD que a PK é o ID
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id; //não está vindo do insonia
     private String nome;
     private String email;
@@ -35,5 +28,16 @@ public class medico {
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
+    @Embedded // Utilizada na classe pai, associa uma entidade a uma tabela auxiliar
+    private Endereco endereco;
+
+        // Constructor com o recebimento dos dados,
+    // convertendo para o objeto.
+    public Medico(DadosCadastroMedico dados){
+        this.nome = dados.nome();
+        this.email = dados.email();
+        this.crm = dados.crm();
+        this.especialidade = dados.especialidade();
+    }
 
 } 
