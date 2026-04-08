@@ -38,6 +38,25 @@ public class Medico {
         this.email = dados.email();
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();
+        this.endereco = new Endereco(dados.endereco());
+    }
+
+    //Método para verificar a atualização do médico, recebendo um objeto do tipo
+    //DadosAtualizacaoMedico e atualizando os atributos do médico com os dados
+    // recebidos na requisição
+    public void atualizarInformacoes(DadosAtualizacaoMedico dados) {
+        //Verifica se o nome recebido é diferente de null, ou seja, se o nome foi enviado
+        // na requisição da atualização (put), e se for diferente de null, atualiza o nome do
+        //médico com o nome recebido.
+        if (dados.nome()!= null) {
+            this.nome = dados.nome();
+        }
+        if (dados.email()!= null) {
+            this.email = dados.email();
+        }
+        if (dados.endereco()!= null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
     }
 
 } 

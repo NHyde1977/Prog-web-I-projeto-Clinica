@@ -17,11 +17,12 @@ public class Paciente {
     
     @Id //informa para o BD que a PK é o ID
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id; //não está vindo do insonia
 
     @Embedded // Utilizada na classe pai, associa uma entidade a uma tabela auxiliar
     private Endereco endereco;
 
-    private Integer id; //não está vindo do insonia
+   
     private String nome;
     private String email;
     private String telefone;
